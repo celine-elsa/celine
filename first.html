@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Style the gallery container */
+            .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            }
+
+            /* Style the gallery items */
+            .gallery img {
+            margin: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% / 3 - 10px);
+            height: 200px;
+            object-fit: cover;
+            }
+
+            /* Style the video background */
+            .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            }
+
+            /* Style the content on top of the video */
+            .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(0, 0, 0);
+            font-size: 3em;
+            text-align: center;
+            }
+
+            /* Style the comment section */
+            .comment-section {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            }
+
+            .comment-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            }
+
+            .comment-section label {
+            display: block;
+            margin-bottom: 5px;
+            }
+
+            .comment-section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            }
+
+            .comment-section button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+
+            .comment-section button:hover {
+            background-color: #3e8e41;
+            }
+
+            .comment-section p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <h1>Welcome! Celine<3</h1>
+            <hr>
+            <h2>This is the place only for us!<br>
+                No one else know about this place😉</h2>
+        </center>
+        <!-- Blink -->
+        <style>
+            .slideshow {
+              position: relative;
+              width: 500px;
+              height: 500px;
+              overflow: hidden;
+            }
+          
+            .slideshow img {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              opacity: 0;
+              transition: opacity 3s ease-in-out;
+            }
+          
+            .slideshow img.active {
+              opacity: 1;
+            }
+          
+            .slideshow img.blink {
+              animation: blink s i3nfinite alternate;
+            }
+          
+            @keyframes blink {
+              from {
+                opacity: 1;
+              }
+              to {
+                opacity: 0.5;
+              }
+            }
+          </style>
+        
+          <div class="slideshow">
+            <img src="/image/5.png" class="active blink" />
+            <img src="/image/1.jpg" />
+            <img src="/image/2.jpg" />
+            <img src="/image/3.jpg" />
+            <img src="/image/4.jpg" />
+          </div>
+          
+          <script>
+            let index = 0;
+            let images = document.querySelectorAll(".slideshow img");
+            let interval = setInterval(switchImage, 3000);
+          
+            function switchImage() {
+              images[index].classList.remove("active");
+              images[index].classList.remove("blink");
+              index = (index + 1) % images.length;
+              images[index].classList.add("active");
+              images[index].classList.add("blink");
+            }
+          </script>
+          
+
+        <!-- Video background -->
+        <video autoplay muted loop class="video-background">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Content on top of the video -->
+
+        <!-- Comment section -->
+        <div class="comment-section">
+            <h2>Leave a comment</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            <p>Comments:</p>
+            <div id="comments"></div>
+        </div>
+
+        <script>
+            // Add event listener to form submit button
+            document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Get form data
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var comment = document.getElementById('comment').value;
+            // Create new comment element
+            var newComment = document.createElement('div');
+            newComment.innerHTML = '<strong>' + name + '</strong> (' + email + '):<br>' + comment;
+            // Add new comment to comments section
+            document.getElementById('comments').appendChild(newComment);
+            // Clear form fields
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('comment').value = '';
+            });
+        </script>
+
+    </body>
+</html>
